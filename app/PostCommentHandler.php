@@ -91,7 +91,6 @@ class PostCommentHandler {
                     ]
                 ]
             ]
-            // 'message' => 'Aduh ga tau nih :D'
         ]);
     }
 
@@ -129,7 +128,6 @@ class PostCommentHandler {
     }
 
     public function answerGetStarted() {
-
 
         $this->makeMessage('Selamat datang di produk Proteksi Penghasilan.
 
@@ -249,6 +247,13 @@ class PostCommentHandler {
 
             exit;
         }
+    }
+
+    public function answerRegisterPolice() {
+        
+        $message = "reg yap";
+
+        $this->makeMessage($message);
     }
 
 }
