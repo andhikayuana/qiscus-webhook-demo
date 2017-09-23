@@ -251,7 +251,7 @@ class PostCommentHandler {
 
     public function answerRegisterPolice() {
         
-        $message = "reg yap";
+        $message = "daftar_asuransi";
 
         $this->makeMessage($message);
     }
