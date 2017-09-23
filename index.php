@@ -33,6 +33,8 @@ $handler->run();
 
 if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
 
+    $handler->handleSalaryInput($handler->getQiscusCommentMessage()['text']);
+
     switch ($handler->getQiscusCommentMessage()['text']) {
 
         case 'start':
@@ -44,7 +46,11 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
             break;
 
         case 'pembelian':
-            $handler->answerListAgent();
+            $handler->answerBuy();
+            break;
+
+        case 'daftar':
+            $handler->answerRegisterPolice();
             break;
         
         default:

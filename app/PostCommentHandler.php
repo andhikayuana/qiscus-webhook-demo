@@ -129,15 +129,18 @@ class PostCommentHandler {
     }
 
     public function answerGetStarted() {
-        $message = "Selamat datang di Lifestyle Insurance.
 
-        Di sini kamu akan diperkenalkan dengan Asuransi Proteksi Income :D
 
-        Jika kamu memilih menu \"Simulasi\".
+        $this->makeMessage('Selamat datang di produk Proteksi Penghasilan.
 
-        Apabila kamu memilih menu \"Pembelian\". 
+        Proteksi Penghasilan akan melindungi penghasilan Anda apabila terjadi risiko meninggal dunia.
         
-        Kamu akan langsung diarahkan untuk mencari agent yang terdekat di kotamu :D";
+        Dengan memberikan penghasilan pengganti kepada keluarga yang dicintai selama 5 tahun.');
+
+        $message = "Anda ingin tahu bagaimana kami melindungi penghasilan Anda ? silakan pilih menu `simulasi`.
+
+        Apabila Anda sudah paham dengan produk ini, Anda dapat langsung melakukan pembelian dengan memilih menu `pembelian`
+        ";
 
         return $this->request([
             'sender_email' => TARGET_EMAIL,
@@ -173,46 +176,79 @@ class PostCommentHandler {
 
     public function answerSimulation() {
         // todo
-        $message = 'halo ini simulation';
+        $message = 'Yuk, tulis penghasilan Anda setiap bulannya !';
 
-        return $this->request([
-            'sender_email' => TARGET_EMAIL,
-            'room_id' => ROOM_ID,
-            'message' => $message
-        ]);
+        return $this->makeMessage($message);
     }
 
     public function answerBuy() {
         // todo
         $message = 'halo ini buy';
         
-        return $this->request([
-            'sender_email' => TARGET_EMAIL,
-            'room_id' => ROOM_ID,
-            'message' => $message
-        ]);
+        return $this->makeMessage($message);
     }
 
     public function answerListAgent() {
         // todo
         $message = 'halo ini list agent';
         
-        return $this->request([
+        return $this->makeMessage($message);
+    }
+
+    public function makeMessage($message = 'Hello') {
+        $this->request([
             'sender_email' => TARGET_EMAIL,
             'room_id' => ROOM_ID,
             'message' => $message
         ]);
     }
 
-    public function answerInputSalary() {
-        // todo
-        $message = 'halo ini input salary';
-        
-        return $this->request([
-            'sender_email' => TARGET_EMAIL,
-            'room_id' => ROOM_ID,
-            'message' => $message
-        ]);
+    public function handleSalaryInput($salary = 0) {
+        if (is_numeric($salary)) {
+
+            $result = 0.1 * $salary;
+
+            $message = "Hanya dengan menyisihkan ".$result." setiap bulan,
+            maka penghasilan Anda akan dilindungi dimana apablia risiko meninggal dunia. ";
+            
+            $this->makeMessage($message);
+
+            $result = $salary * 60;
+
+            $message = "Keluarga yang Anda cintai akan mendapat penghasilan pengganti sebesar :
+            ".$result." (".$salary." x 60bln).";
+            
+            $this->makeMessage($message);
+
+            $message = "Selain itu, apabila uang yang Anda sisihkan juga bisa kembali dalam bentuk investasi jika tidak terjadi sesuatu hal yang berrisiko.";
+
+            $this->makeMessage($message);
+
+            $message = "Tunggu apalagi ? Daftar sekarang juga dengan memilih menu daftar di bawah !";
+            
+            $this->request([
+                'sender_email' => TARGET_EMAIL,
+                'room_id' => ROOM_ID,
+                'type' => 'buttons',
+                'payload' => [
+                    'text' => $message,
+                    'buttons' => [
+                        [
+                            'label' => 'daftar',
+                            'type' => 'postback',
+                            'payload' => [
+                                'url' => 'http://api.anu.com',
+                                'method' => 'get',
+                                'payload' => null
+                            ],
+                        ],
+                    ]
+            
+                ]
+            ]);           
+
+            exit;
+        }
     }
 
 }
