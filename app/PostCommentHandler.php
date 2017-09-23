@@ -76,17 +76,32 @@ class PostCommentHandler {
         return $this->request([
             'sender_email' => 'ismail@domain.com',
             'room_id' => '37537',
-            'message' => 'Aduh ga tau nih :D'
+            'type' => 'buttons',
+            'payload' => [
+                'text' => 'Aduh ga tau nih, Silakan klik menu start di bawah ya :D',
+                'buttons' => [
+                    [
+                        'label' => 'start',
+                        'type' => 'postback',
+                        'payload' => [
+                            'url' => 'http://api.anu.com',
+                            'method' => 'get',
+                            'payload' => null
+                        ],
+                    ]
+                ]
+            ]
+            // 'message' => 'Aduh ga tau nih :D'
         ]);
     }
 
-    public function makeAnswer() {
+    public function makeTest() {
         return $this->request([
             'sender_email' => 'ismail@domain.com',
             'room_id' => '37537',
             'type' => 'buttons',
             'payload' => [
-                'text' => $this->answerGetStarted(),
+                'text' => 'just for testing',
                 'buttons' => [
                     [
                         'label' => 'simulasi',
@@ -114,7 +129,7 @@ class PostCommentHandler {
     }
 
     public function answerGetStarted() {
-        return "Selamat datang di Lifestyle Insurance.
+        $message = "Selamat datang di Lifestyle Insurance.
 
         Di sini kamu akan diperkenalkan dengan Asuransi Proteksi Income :D
 
@@ -123,6 +138,37 @@ class PostCommentHandler {
         Apabila kamu memilih menu \"Pembelian\". 
         
         Kamu akan langsung diarahkan untuk mencari agent yang terdekat di kotamu :D";
+
+        return $this->request([
+            'sender_email' => TARGET_EMAIL,
+            'room_id' => ROOM_ID,
+            'type' => 'buttons',
+            'payload' => [
+                'text' => $message,
+                'buttons' => [
+                    [
+                        'label' => 'simulasi',
+                        'type' => 'postback',
+                        'payload' => [
+                            'url' => 'http://api.anu.com',
+                            'method' => 'get',
+                            'payload' => null
+                        ],
+                    ],
+                    [
+                        'label' => 'pembelian',
+                        'type' => 'postback',
+                        'payload' => [
+                            'url' => 'http://api.anu.com',
+                            'method' => 'get',
+                            'payload' => null
+                        ]
+                    ]
+        
+                ]
+        
+            ]
+        ]);
     }
 
     public function answerSimulation() {
