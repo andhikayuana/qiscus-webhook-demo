@@ -173,18 +173,46 @@ class PostCommentHandler {
 
     public function answerSimulation() {
         // todo
+        $message = 'halo ini simulation';
+
+        return $this->request([
+            'sender_email' => TARGET_EMAIL,
+            'room_id' => ROOM_ID,
+            'message' => $message
+        ]);
     }
 
     public function answerBuy() {
         // todo
+        $message = 'halo ini buy';
+        
+        return $this->request([
+            'sender_email' => TARGET_EMAIL,
+            'room_id' => ROOM_ID,
+            'message' => $message
+        ]);
     }
 
     public function answerListAgent() {
         // todo
+        $message = 'halo ini list agent';
+        
+        return $this->request([
+            'sender_email' => TARGET_EMAIL,
+            'room_id' => ROOM_ID,
+            'message' => $message
+        ]);
     }
 
     public function answerInputSalary() {
         // todo
+        $message = 'halo ini input salary';
+        
+        return $this->request([
+            'sender_email' => TARGET_EMAIL,
+            'room_id' => ROOM_ID,
+            'message' => $message
+        ]);
     }
 
 }
