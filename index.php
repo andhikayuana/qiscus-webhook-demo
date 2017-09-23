@@ -49,9 +49,10 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
             $handler->answerBuy();
             break;
 
-        // case 'daftar':
+        case 'daftar':
         //     $handler->answerRegisterPolice();
-        //     break;
+            exit;
+            break;
         
         default:
             $handler->makeAnswerNotFound();    
