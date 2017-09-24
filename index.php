@@ -59,6 +59,12 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
             $handler->answerAgentChoosen();
 
             break;
+
+        // case 'lengkapi':
+
+        //     $handler->answerCompleteForm();
+
+        //     break;
         
         default:
             $handler->makeAnswerNotFound();    

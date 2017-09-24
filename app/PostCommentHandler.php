@@ -188,9 +188,39 @@ class PostCommentHandler {
 
     public function answerAgentChoosen() {
         // todo
-        $message = 'Anda telah memilih agen kami bernama ';
+        $payload = $this->getQiscusCommentMessage()['payload']['content'];
+
+        $message = 'Anda telah memilih agen kami bernama '.$payload['name'];
         
-        return $this->makeMessage($message);
+        // return $this->makeMessage($message);
+
+        return $this->request([
+            'sender_email' => TARGET_EMAIL,
+            'room_id' => ROOM_ID,
+            'type' => 'card',
+            'payload' => [
+                'text' => $message,
+                'image' => $payload['image_url'],
+                'title' => $message,
+                'description' => 'Silakan Anda lengkapi form untuk melakukan pembelian produk Proteksi Penghasilan',
+                'url' => 'http://anu.com',
+                'buttons' => [
+                    [
+                        'label' => 'lengkapi',
+                        'type' => 'postback',
+                        'payload' => [
+                            'url' => 'http://api.anu.com',
+                            'method' => 'get',
+                            'payload' => null
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function answerCompleteForm() {
+        return $this->makeMessage('halo');
     }
 
     public function makeMessage($message = 'Hello') {
