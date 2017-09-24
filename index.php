@@ -60,11 +60,11 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
 
             break;
 
-        // case 'lengkapi':
+        case 'lengkapi':
 
         //     $handler->answerCompleteForm();
-
-        //     break;
+            exit;
+            break;
         
         default:
             $handler->makeAnswerNotFound();    
