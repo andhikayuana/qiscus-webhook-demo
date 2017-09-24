@@ -204,7 +204,7 @@ class PostCommentHandler {
     public function handleSalaryInput($salary = 0) {
         if (is_numeric($salary)) {
 
-            $result = 0.1 * $salary;
+            $result = 0.5 * $salary;
 
             $message = "Hanya dengan menyisihkan ".$result." setiap bulan,
             maka penghasilan Anda akan dilindungi dimana apablia risiko meninggal dunia. ";
