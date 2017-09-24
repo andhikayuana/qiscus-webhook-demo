@@ -46,7 +46,11 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
             break;
 
         case 'pembelian':
-            $handler->answerBuy();
+            
+            // $handler->answerBuy();
+
+            exit;
+
             break;
 
         case 'daftar':
