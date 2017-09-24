@@ -53,6 +53,12 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
         //     $handler->answerRegisterPolice();
             exit;
             break;
+
+        case 'pilih_agen':
+
+            $handler->answerAgentChoosen();
+
+            break;
         
         default:
             $handler->makeAnswerNotFound();    

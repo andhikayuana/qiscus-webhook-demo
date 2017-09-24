@@ -186,9 +186,9 @@ class PostCommentHandler {
         return $this->makeMessage($message);
     }
 
-    public function answerListAgent() {
+    public function answerAgentChoosen() {
         // todo
-        $message = 'halo ini list agent';
+        $message = 'Anda telah memilih agen kami bernama ';
         
         return $this->makeMessage($message);
     }
