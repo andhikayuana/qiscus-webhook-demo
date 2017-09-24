@@ -65,6 +65,12 @@ if ($handler->getQiscusComment()['type'] == 'post_comment_mobile') {
         //     $handler->answerCompleteForm();
             exit;
             break;
+
+        case 'submit_form':
+            
+            $handler->answerFormSubmit();
+
+            break;
         
         default:
             $handler->makeAnswerNotFound();    

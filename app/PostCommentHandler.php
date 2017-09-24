@@ -219,6 +219,10 @@ class PostCommentHandler {
         ]);
     }
 
+    public function answerFormSubmit() {
+        return $this->makeMessage('Terimakasih telah menjadi bagian dari kami.');
+    }
+
     public function answerCompleteForm() {
         return $this->makeMessage('halo');
     }
