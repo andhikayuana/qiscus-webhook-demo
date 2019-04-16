@@ -9,6 +9,14 @@
 
 ## How to run
 
+* Clone this repository and install dependencies
+
+```bash
+$ git clone https://github.com/andhikayuana/qiscus-webhook-demo
+$ cd qiscus-webhook-demo
+$ composer install
+```
+
 * Create App in Qiscus Dashboard
 * Create New 2 User by using [Qiscus Web Sample](https://github.com/andhikayuana/qiscus-web-sample)
 * Config your `.env` file
