@@ -5,19 +5,13 @@
  */
 require 'vendor/autoload.php';
 
-/**
- * config
- */
-const BASE_URL = 'http://lifestyle-fct27dl8lmo.qiscus.com';
-const QISCUS_SDK_SECRET = 'd01f3afa94edd84c44057dbc48ae54ea';
-const TARGET_EMAIL = 'ismail@domain.com';
-const ROOM_ID = '37537';
-
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 
 /**
  * Handler Post Comment
  */
-$handler = new PostCommentHandler(BASE_URL, QISCUS_SDK_SECRET);
+$handler = new PostCommentHandler();
 
 if (!empty($_GET['init_start']) && $_GET['init_start'] == '1') {
     /**

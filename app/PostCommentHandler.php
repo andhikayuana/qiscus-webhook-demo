@@ -2,28 +2,25 @@
 
 use GuzzleHttp\Client;
 
-class PostCommentHandler {
-
-    private $baseUrl;
-    private $qiscusSecretKey;
+class PostCommentHandler {    
+    
     private $qiscusComment;
     private $client;
 
-    public function __construnct($baseUrl, $qiscusSecretKey) {
-        $this->baseUrl = $baseUrl;
-        $this->qiscusSecretKey = $qiscusSecretKey;
+    public function __construnct() {
     }
 
     private function createHeaders() {
         $this->headers = [
-            'QISCUS_SDK_SECRET' => QISCUS_SDK_SECRET,
+            'QISCUS_APP_ID' => getenv('QISCUS_APP_ID'),
+            'QISCUS_SDK_SECRET' => getenv('QISCUS_SDK_SECRET'),
             'Content-Type' => 'application/json'
         ];
     }
 
     private function createClient() {
         $this->client = new GuzzleHttp\Client([
-            'base_uri' => BASE_URL
+            'base_uri' => getenv('BASE_URL')
         ]);
     }
 
@@ -74,8 +71,8 @@ class PostCommentHandler {
 
     public function makeAnswerNotFound() {
         return $this->request([
-            'sender_email' => 'ismail@domain.com',
-            'room_id' => '37537',
+            'sender_email' => getenv('SENDER'),
+            'room_id' => getenv('ROOM_ID'),
             'type' => 'buttons',
             'payload' => [
                 'text' => 'Aduh ga tau nih, Silakan klik menu start di bawah ya :D',
@@ -96,8 +93,8 @@ class PostCommentHandler {
 
     public function makeTest() {
         return $this->request([
-            'sender_email' => 'ismail@domain.com',
-            'room_id' => '37537',
+            'sender_email' => getenv('SENDER'),
+            'room_id' => getenv('ROOM_ID'),
             'type' => 'buttons',
             'payload' => [
                 'text' => 'just for testing',
@@ -141,8 +138,8 @@ class PostCommentHandler {
         ";
 
         return $this->request([
-            'sender_email' => TARGET_EMAIL,
-            'room_id' => ROOM_ID,
+            'sender_email' => getenv('TARGET_EMAIL'),
+            'room_id' => getenv('ROOM_ID'),
             'type' => 'buttons',
             'payload' => [
                 'text' => $message,
@@ -195,8 +192,8 @@ class PostCommentHandler {
         // return $this->makeMessage($message);
 
         return $this->request([
-            'sender_email' => TARGET_EMAIL,
-            'room_id' => ROOM_ID,
+            'sender_email' => getenv('TARGET_EMAIL'),
+            'room_id' => getenv('ROOM_ID'),
             'type' => 'card',
             'payload' => [
                 'text' => $message,
@@ -229,8 +226,8 @@ class PostCommentHandler {
 
     public function makeMessage($message = 'Hello') {
         $this->request([
-            'sender_email' => TARGET_EMAIL,
-            'room_id' => ROOM_ID,
+            'sender_email' => getenv('TARGET_EMAIL'),
+            'room_id' => getenv('ROOM_ID'),
             'message' => $message
         ]);
     }
@@ -259,8 +256,8 @@ class PostCommentHandler {
             $message = "Tunggu apalagi ? Daftar sekarang juga dengan memilih menu daftar di bawah !";
             
             $this->request([
-                'sender_email' => TARGET_EMAIL,
-                'room_id' => ROOM_ID,
+                'sender_email' => getenv('TARGET_EMAIL'),
+                'room_id' => getenv('ROOM_ID'),
                 'type' => 'buttons',
                 'payload' => [
                     'text' => $message,
